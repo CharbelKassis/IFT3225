@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Rapport du TP3</title>
+        <link rel="stylesheet" type="text/css" href="css/rapport.css"/>
+    </head>
+    <body>
+        
+        <div id="header">
+            <h1>Rapport du TP3 du cours IFT3225 Été 2016</h1>
+            <div>
+                <p>Nom: Charbel Kassis</p>
+                <p>Matricule: p0976458</p>
+                <p>Le rapport et le tp3 ont été réalisés avec le logiciel oXygen XML Editor, le débuggeur de Google Chrome (F12), PuTTY et WinSCP </p>
+            </div>
+        </div>          
+        
+
+            
+            <div id="navigation">
+                
+                <ul> 
+                    <li><span class="navTitle">Le programme</span></li>
+                    
+                    <li> 
+                        <ul>  
+                            
+                            <li><a href="tp3.html">La page principale</a></li> 
+                            <li><a href="resultat.php">La page de résultat</a></li>
+                            <li><a href="resultat.php.txt">Code source de la page de résultat</a></li>
+                        </ul> 
+                    
+                    </li>
+                    
+                    <li><span class="navTitle">javascript</span></li>
+                    
+                    <li> 
+                        
+                        <ul>
+                           
+                            <li><a href="javascript/script.js">Démarrer le parsing</a></li>
+                            <li><a href="javascript/exception.js">Les exceptions</a></li>
+                            <li><a href="javascript/fileParser.js">Le constructeur d'objets FileParser</a></li>
+                            <li><a href="javascript/parsingFunction.js">Les fonctions utilisées lors du parsing</a></li>
+                            <li><a href="javascript/buffer.js">Le constructeur d'objets ParsingBuffer </a></li>
+                            <li><a href="javascript/stringBuilder.js">Le constructeur d'objets StringBuilder </a></li>
+                            <li><a href="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">Lien vers le jQuery</a></li>
+
+                        </ul>
+                    
+                    </li>
+                    
+                    <li><span class="navTitle">php</span></li>
+                    
+                    <li>
+                        
+                        <ul>
+                            <li><a href="script.php.txt">Insertion dans la base de donnée</a></li>
+                            <li><a href="opendb.php.txt">Ouvrir la connection au DB</a></li>
+                            <li><a href="closedb.php.txt">Fermer la connection au DB</a></li>
+                            <li><a href="config.php.txt">La configuration de la base de donnée</a></li>
+                            <li><a href="emptyDatabase.php.txt">Remettre à zéro la base de donnée</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                    
+                    <li><span class="navTitle">mysql</span></li>
+
+                    <li> <ul> <li> <a href="sql/tp3.sql">Démarrer la base de donnée</a> </li> </ul></li>
+                    
+                    <li><span class="navTitle">css</span></li>
+                    
+                    <li> 
+                        <ul> 
+                            
+                            <li> <a href="css/style.css">CSS de la page principale</a> </li>
+                            <li> <a href="css/rapport.css">CSS du rapport</a></li>
+                            <li> <a href="css/resultat.css">CSS de la page résultat</a></li>
+                        
+                        </ul>
+                    </li>
+
+                </ul>
+                
+            </div>
+        
+        <div id="presentation"> 
+            
+            <h1>La structure du programme</h1>
+            
+            <h2>Le programme</h2>
+            
+            <div class="section">
+                
+                <h3>tp3.xhtml</h3>
+                
+                <p> 
+                    Sélectionner un fichier localement puis cliquer sur parser pour démarrer le parsing et l'insertion dans la base de donnée en même temps. <br/><br/>
+                    
+                    <strong>REMARQUE 1</strong>: Ce programme n'arrivera pas à parser complètement le log de 4 Gigabytes, le navigateur de web Google Chrome plantera après 20%, Firefox après 95%. Il existe une méthode
+                    pour régler ce problème, mais il est trop pour faire des changements pour le TP3. Le programme semble utiliser trop de mémoire dans le navigateur.
+                    <br/><br/>
+                    <strong>REMARQUE 2</strong>: Ce programme n'accepte que les fichiers log du format original. C'est-à-dire, le format avec le header qui décrit la forme de chaque fonction, suivit de 70 astérisques
+                    (**********************************************************************) puis finalement le log en tant que tel. Si le parseur ne trouve pas les astérisques alors le programme lance une exception.
+                    <br/><br/>
+                    <strong>REMARQUE 3</strong>: Pour les même raisons que REMARQUE 1, il est impossible de parser toutes les fonctionnalités. Le parsing de "GetDocuments" a été
+                    désactivé pour que le programme fonctionne avec le fichier de 800 MO. Pour réactiver, il suffit d'enlever les barres de commentaires.
+
+                </p>
+                
+                <pre>
+function _functionIsNeededForExtraction(funct) {
+    
+    switch(funct) {
+        
+        case "SetDocuments": 
+        case "UpdateDocuments":
+        case "SearchDocuments": 
+        <em style="color:red;">//case "GetDocuments":</em>
+        case "GetDocumentResSpace":return true;
+        default: return false;
+    }
+}                    
+                </pre>
+             
+                <h3>resultat.php</h3>
+                
+                <p> Ceci contient les résultats tel que le nombre d'éléments insérés dans les tables.</p>                 
+
+            </div>
+
+            
+            <h2>javascript</h2>
+            
+            <div class="section">
+                
+                <h3>script.js</h3>
+                
+                <p> Le script principale. Il crée un objet FileParser, puis démarre le parsing. Si le fichier est de mauvaise extension (pas .txt) ou bien que le format n'est pas bien (il ne trouve pas les astérisques) alors le programme lance une exception puis l'affiche en alerte. </p>
+                
+                <h3>exception.js</h3>
+                
+                <p>Les exceptions.</p>
+                
+                <h3>fileParser.js</h3>
+                
+                <p> 
+                    Le script qui contient le constructeur d'objets FileParser. Cet objet sert à parser un fichier en découpant le fichier en plusieurs bloques de texte, il garde en mémoire le format du fichier,
+                    la taille de chaque bloc de texte, le numéro du bloque de  texte qui est entrain de se faire parser, le numéro de byte du caractère qui est entrain de se faire parser relativement au bloque de text,
+                    le bloque de text sous-forme de string, un objet ParsingBuffer, la fonction de parsing, l'objet File et la liste des lignes à envoyer au serveur.<br/><br/>
+                    
+                    Lorsque l'on fait un demande de démarrage de parsing sur l'objet FileParser, FileParser appelera la fonction de parsing sur chaque bloque de texte, puis une fois le parsing de ce bloque est terminée, 
+                    calculer la position du prochain bloque de text et appeler la fonction de parsing. Le premier bloque a une fonction de parsing particulière : On doit d'abord chercher les astériques pour s'assurer
+                    que le fichier est de bon format.
+          
+                </p>
+                
+                <h3>parsingFunction.js</h3>
+                
+                <p>
+                    Le script qui contient les fonctions utilisées pour parser le fichier. Lorsque le fichier est entrain de chercher les éléments communs à toutes les fonctions, il ne regarde que l'état du parsing. Si l'état est
+                    qu'il n'est pas imcomplet, celà veut dire que l'élément à été parsé complètement. Si l'élément n'a pas été parsé complètement, ceci veut dire qu'une partie de l'élément se trouve dans le prochain bloque de texte.
+                    Une fois la fonction extraite, on vérifie si cette fonction est à extraire, si oui alors on continue, sinon on retourne au début et on enlève les éléments qui ont été extraits. Une fois la partie commune extraite, on
+                    regarde la fonction pour voir les éléments suivants à extraire ou bien, dans le cas de GetDocumentResSpace, les éléments à ignorer.<br/><br/>
+                    
+                    Une fois un bloque de texte complètement parsé, on fait un appel AJAX pour ajouter les éléments extraits à la base de donnée. En parallèle, on continue de parser le fichier en passant au prochain bloque.
+                    
+                </p>
+                
+                <h3>buffer.js</h3>
+                
+                <p>
+                    Le script qui contient le constructeur d'objets ParsingBuffer. Cet objet sert à garder en mémoire le type des éléments qui sont entrain de se faire extraire, la fonction qui est entrain de se faire extraire,
+                    l'état de parsing (Est-ce que l'élément courrant a été complètement extrait?), un pointeur vers la position courante du prochain élément à extraire (ou ignorer) et la liste des éléments extraits sous forme
+                    de StringBuilder.
+                </p>
+                
+                <h3>stringBuilder.js</h3>
+                
+                <p>
+                    Le script qui contient le constructeur d'objets StringBuilder. Cet objet sert à construire des strings à partir des caractères ou strings déjà stockés. En théorie, stocker les caractères dans un tableau,
+                    puis les concaténer à la fin est plus performant que de le concaténer au fur et à mesure qu'on extrait des caractères du fichier, car la concaténation crée des objets à chaque fois et la création d'objet
+                    a un coût non négligable.
+                </p>
+                
+                <h3>jquery.min.js</h3>
+                
+                <p>jquery.min.js est le framework jQuery.</p>
+                             
+            </div>
+            
+            <h2>php</h2>
+            
+            <div class="section">
+                
+                <h3>script.php</h3>
+                    
+                <p> Le script php principale. Il reçoit un tableau "stringified" de javascript, il faut d'abord le décoder pour retrouver un tableau de string ensuite transformer chaque string en un tableau de 10 éléments pour pouvoir les
+                insérer dans la base de donnée. </p>
+                
+                <h3>opendb.php</h3>
+                    
+                <p> Script qui ouvre la base de donnée. </p>
+                    
+                <h3>closedb.php</h3>
+                
+                <p> Script qui ferme la base de donnée. </p>
+                
+                <h3>config.php</h3>
+                
+                <p> Script qui contient les paramètres de configurations tels que le nom du serveur, le nom de l'utilisateur, etc.</p>
+                
+                <h3>emptyDatabase.php</h3>
+                
+                <p> Script qui efface la base de donnée, est appelée après avoir demander de parser un nouveau fichier. </p>
+            
+            </div>
+            
+            <h2> mysql </h2>
+            
+            <div class="section">
+                
+                <h3>tp3.sql</h3>
+                
+                <p>Le fichier sql contient les 5 fonctionnalités qu'on doit extraire du fichier sous forme de tables. Chacune de ces tables a 9 attributs. 
+                Voici les attributs communs:</p>
+                <pre> 
+`date` DATETIME(3),
+`sessionId` INT UNSIGNED,
+`userId` VARCHAR(20),
+`docBase` VARCHAR(20),
+`timeElapsed` FLOAT UNSIGNED,
+`threadId` INT UNSIGNED,
+`memory` INT UNSIGNED,
+                </pre>
+                
+                <p>Pour SetDocuments, UpdateDocuments, GetDocuments et GetDocumentResSpace voici leurs 2 derniers éléments: </p>
+                <pre>
+`DocCount` INT UNSIGNED,
+`TotalSize` INT UNSIGNED,                    
+                    
+                </pre>
+                <p>et pour SearchDocuments:</p>
+                <pre>
+`rsCount` INT UNSIGNED,
+`timeSeekRead` FLOAT UNSIGNED,                   
+                </pre>
+                
+                <p>La clé primaire de ces tables est: PRIMARY KEY (`date`,`sessionId`,`userId`,`docBase`)</p>
+                <p>les clés étrangères:</p>
+                <pre>
+FOREIGN KEY (`sessionId`) REFERENCES `sessions`(`sessionId`),
+FOREIGN KEY (`userId`) REFERENCES `users`(`userId`)    
+                </pre>
+                <p>Comme indiqué dans les clés étrangères, il y a 2 tables de plus. La tables des sessionId et des users. </p>
+                
+            </div>
+            
+        </div>
+
+        <div id="footer">
+            <p>
+                <a href="http://validator.w3.org/check?uri=referer"><img
+                    src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a>
+            </p>
+        </div>    
+      
+    </body>
+</html>

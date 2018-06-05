@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!-- Par Charbel Kassis 
+     p0976458
+     tp2.xhtml version 1.0 
+     
+     La page web du jeu -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>TP 2</title>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"/>
+        <script type="text/javascript" src="jeu.js"/>
+        <script type="text/javascript" src="listener.js"/>
+        <script type="text/javascript" src="script.js"/>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+
+    </head>
+    
+    <body>
+        <fieldset>
+            <legend>Description</legend>
+            
+            URL de l'image<input name="URL" id="URL" value="https://lalanguedanslapoche.files.wordpress.com/2014/03/chien-chaud.jpg"/><br />
+            
+            Nombre de lignes<input type="text" name="nbLignes" id="nbLignes" value="3" /> 
+            de colonnes<input type="text" name="nbColonnes" id="nbColonnes" value="3"/> 
+            Affichage de numéro<input type="checkbox" name="afficherNumero" id="afficherNumero"/>
+            
+            <input type="button" value="Afficher" name="afficherImages" id="afficherImages"/>
+            <input type="button" value="Brasser les tuiles" name="brasser" id="brasser"/>
+            
+            <h1>Deplacement: 0</h1>
+            
+        </fieldset>
+
+    </body>
+</html>

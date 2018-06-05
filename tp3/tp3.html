@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TP3</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="javascript/exception.js"></script>
+        <script src="javascript/parsingFunction.js"></script>
+        <script src="javascript/fileParser.js"></script>
+        <script src="javascript/buffer.js"></script>
+        <script src="javascript/stringBuilder.js"></script>
+        <script src="javascript/script.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    </head>
+    <body>
+        
+        
+        <div class="divContainer">
+            <div id="poucentageDiv">
+                <input type="file" onchange="loadFile();"/>
+                <input type="button" value="Parse file" onclick="initParse();"/><br/>
+                <p><span class="spanContainer"><span id="parsedBlock">0</span>/<span id="totalBlock">0</span> (<span id="pourcentage">0</span>%)</span> Nombre de bloques de texte parsés en Javascript </p><br/>
+                <p><span class="spanContainer"><span id="totalSuccessfulAjax">0</span>/<span id="totalAjaxCalls">0</span> (<span id="ajaxPourcentage">0</span>%)</span>
+                    Nombre de bloques de texte extraits et envoyés dans la base de donné en PHP
+                    </p><br/>
+            </div>
+        
+        </div>
+        
+        <div class="divContainer">
+            <div id="statusDiv">
+                <p><u>Status</u>: <span class="spanContainer"><span id="status">N/A</span></span> </p>
+                <p><u>Nombre de lignes qui sont actuellement entrain d'être insérées dans la base de donnée</u>: <span class="spanContainer"><span id="nbOfLine">0</span></span> </p>
+                
+            </div>
+        </div>
+        
+    </body>
+    
+</html>

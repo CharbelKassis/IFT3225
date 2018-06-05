@@ -1,0 +1,39 @@
+table,td,tr {
+    
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+table {
+    margin-top: 5%;
+    padding:0px;
+    border: solid black 2px;
+    z-index: initial;
+}
+
+td,tr {
+    
+    padding:0px;
+    margin:0px;
+}
+
+img {
+   width:100%; 
+   height:auto;
+   
+}
+
+canvas {
+    
+    padding:0px;
+    margin:0px;
+    display:block;
+    
+}
+
+.numero {
+    
+    position: absolute;
+    z-index: 1;
+    font-size: 15pt;
+}

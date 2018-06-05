@@ -1,0 +1,33 @@
+.divContainer {
+    
+    text-align: center;
+    margin: 5%;
+ 
+}
+
+.spanContainer {
+    
+    font-size: 20pt;
+}
+
+#poucentageDiv , #statusDiv  {  
+  
+    display: inline-block;
+    border: solid black 1px;
+    text-align: justify;
+    width: 55%;
+
+}
+
+p {
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+input[type="file"] {
+    
+    border: solid black 1px;
+    margin-left: 25%;
+    margin-top: 5%;
+    
+}
